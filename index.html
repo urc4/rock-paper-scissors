@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      const GAME_OPTIONS = ["Rock", "Paper", "Scissors"];
+      const GAME_OPTIONS = ["rock", "paper", "scissors"];
       function getComputerChoice() {
         return GAME_OPTIONS[Math.floor(Math.random() * 2.999999999999)];
       }
@@ -36,12 +36,13 @@
 
       function getPlayerChoice() {
         let valid_choice = false;
+        let playerChoice;
         while (!valid_choice) {
-          let playerChoice = prompt(
+          playerChoice = prompt(
             "Choose ROCK, PAPER or SCISSORS",
             "Say my name"
           );
-          valid_choice = GAME_OPTIONS.includes(playerChoice);
+          valid_choice = GAME_OPTIONS.includes(playerChoice.toLowerCase());
           if (!valid_choice) {
             alert(`${playerChoice} is not allowed!!!`);
           }
@@ -51,6 +52,7 @@
 
       function game_on() {
         let playerScore = 0;
+        let computerScore = 0; // account for ties now
         let playerSelection;
         let computerSelection;
         for (let roundCount = 1; roundCount <= 5; roundCount++) {
@@ -58,14 +60,20 @@
           computerSelection = getComputerChoice();
           playerSelection = getPlayerChoice();
           endRoundMessage = playRound(playerSelection, computerSelection);
-          if (endRoundMessage.includes("win")) {
-            playerScore++;
-          }
+          endRoundMessage.includes("win") ? playerScore++ : computerScore++;
           alert(endRoundMessage);
         }
-        playerScore > 2
+        playerScore > computerScore
           ? console.log("You won the game to 5!!!")
           : console.log("You lost the game to 5!!!");
+      }
+
+      let keepPlaying = true;
+      while (keepPlaying) {
+        game_on();
+        keepPlaying = confirm(
+          "Do you want to play another best to 5 game of ROCK, PAPER OR SCISSORS?"
+        );
       }
     </script>
   </body>
