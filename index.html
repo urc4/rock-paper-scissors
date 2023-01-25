@@ -33,6 +33,40 @@
             : playerLoseMessage;
         }
       }
+
+      function getPlayerChoice() {
+        let valid_choice = false;
+        while (!valid_choice) {
+          let playerChoice = prompt(
+            "Choose ROCK, PAPER or SCISSORS",
+            "Say my name"
+          );
+          valid_choice = GAME_OPTIONS.includes(playerChoice);
+          if (!valid_choice) {
+            alert(`${playerChoice} is not allowed!!!`);
+          }
+        }
+        return playerChoice;
+      }
+
+      function game_on() {
+        let playerScore = 0;
+        let playerSelection;
+        let computerSelection;
+        for (let roundCount = 1; roundCount <= 5; roundCount++) {
+          console.log(`Round ${roundCount}`);
+          computerSelection = getComputerChoice();
+          playerSelection = getPlayerChoice();
+          endRoundMessage = playRound(playerSelection, computerSelection);
+          if (endRoundMessage.includes("win")) {
+            playerScore++;
+          }
+          alert(endRoundMessage);
+        }
+        playerScore > 2
+          ? console.log("You won the game to 5!!!")
+          : console.log("You lost the game to 5!!!");
+      }
     </script>
   </body>
 </html>
