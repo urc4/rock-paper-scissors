@@ -7,6 +7,32 @@
     <title>Rock Paper Scissors</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const GAME_OPTIONS = ["Rock", "Paper", "Scissors"];
+      function getComputerChoice() {
+        return GAME_OPTIONS[Math.floor(Math.random() * 2.999999999999)];
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        const playerWinMessage = `You win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+        const playerLoseMessage = `You lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+
+        if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+          return `It's a tie. ${playerSelection.toUpperCase()} doesn't beat ${playerSelection.toUpperCase()}`;
+        } else if (playerSelection.toLowerCase() === "rock") {
+          return computerSelection === "scissors"
+            ? playerWinMessage
+            : playerLoseMessage;
+        } else if (playerSelection.toLowerCase() === "scissors") {
+          return computerSelection === "paper"
+            ? playerWinMessage
+            : playerLoseMessage;
+        } else {
+          return computerSelection === "rock"
+            ? playerWinMessage
+            : playerLoseMessage;
+        }
+      }
+    </script>
   </body>
 </html>
