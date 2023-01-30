@@ -10,30 +10,39 @@
   </head>
   <body>
     <div class="header">ROCK PAPER SCISSORS, BITCH!</div>
+
     <div class="game-container">
       <div class="jock" id="player">
-        <img src="./icons/heisenberg.png" alt="say my name" />
+        <div class="heisenberg">
+          <img src="./icons/heisenberg.png" alt="say my name" />
+        </div>
       </div>
+
       <div class="player-options">
-        <div class="card">
-          <div class="game-choice">
-            <img src="./icons/meth.png" alt="crystal meth" />
+        <div class="interface"></div>
+
+        <div class="game-options">
+          <div class="card">
+            <div class="game-choice">
+              <img src="./icons/rock.png" alt="crystal meth" />
+            </div>
+            <button id="rock">ROCK</button>
           </div>
-          <button id="rock">ROCK</button>
-        </div>
-        <div class="card">
-          <div class="game-choice">
-            <img src="./icons/cash.png" alt="chatter" />
+          <div class="card">
+            <div class="game-choice">
+              <img src="./icons/paper.png" alt="chatter" />
+            </div>
+            <button id="paper">PAPER</button>
           </div>
-          <button id="paper">PAPER</button>
-        </div>
-        <div class="card">
-          <div class="game-choice">
-            <img src="./icons/stanley-knife.png" alt="poor victor" />
+          <div class="card">
+            <div class="game-choice">
+              <img src="./icons/scissors.png" alt="poor victor" />
+            </div>
+            <button id="scissors">SCISSORS</button>
           </div>
-          <button id="scissors">SCISSORS</button>
         </div>
       </div>
+
       <div class="jock" id="computer">
         <div class="los-pollos-hermanos">
           <img src="./icons/lo-pollo.png" alt="look at me hector" />
@@ -42,7 +51,6 @@
       </div>
     </div>
 
-    <div class="interface"></div>
     <button>make it the restart pop up</button>
     <div class="footer">
       Copyright <a href="https://github.com/"> urc4</a
