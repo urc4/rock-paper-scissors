@@ -6,21 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./script.js" defer></script>
   </head>
   <body>
     <div class="header">ROCK PAPER SCISSORS, BITCH!</div>
     <div class="game-container">
-      <div id="playerOptions">
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
+      <div class="jock" id="player">
+        <img src="./icons/heisenberg.png" alt="say my name" />
+      </div>
+      <div class="player-options">
+        <div class="card">
+          <div class="game-choice">
+            <img src="./icons/meth.png" alt="crystal meth" />
+          </div>
+          <button id="rock">ROCK</button>
+        </div>
+        <div class="card">
+          <div class="game-choice">
+            <img src="./icons/cash.png" alt="chatter" />
+          </div>
+          <button id="paper">PAPER</button>
+        </div>
+        <div class="card">
+          <div class="game-choice">
+            <img src="./icons/stanley-knife.png" alt="poor victor" />
+          </div>
+          <button id="scissors">SCISSORS</button>
+        </div>
+      </div>
+      <div class="jock" id="computer">
+        <div class="los-pollos-hermanos">
+          <img src="./icons/lo-pollo.png" alt="look at me hector" />
+          <img src="./icons/lo-pollo.png" alt="don eladio is dead" />
+        </div>
       </div>
     </div>
-    
+
     <div class="interface"></div>
-    <!-- <button></button>  make it the restart pop up-->
-    <div class="footer">Copyright &#169 <a href="https://github.com/">urc4</a> <i class="fa fa-github"></i></div>
+    <button>make it the restart pop up</button>
+    <div class="footer">
+      Copyright <a href="https://github.com/"> urc4</a
+      ><img src="./icons/github.png" alt="" />
+      <!-- &#169 -->
+    </div>
   </body>
 </html>
