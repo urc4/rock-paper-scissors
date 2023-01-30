@@ -4,11 +4,13 @@ function getComputerChoice() {
 }
 
 const buttons = document.querySelectorAll("button");
+const interface = document.querySelector(".interface");
+
 buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", () => {
     const playerSelection = button.id;
     const computerSelection = getComputerChoice();
-    alert(playRound(playerSelection, computerSelection));
+    interface.textContent = playRound(playerSelection, computerSelection);
   });
 });
 
@@ -27,4 +29,19 @@ function playRound(playerSelection, computerSelection) {
   } else {
     return computerSelection === "rock" ? playerWinMessage : playerLoseMessage;
   }
+}
+
+function gameOn() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  interface.textContent.includes("win")
+    ? playerScore++
+    : interface.textContent.includes("lose")
+    ? computerScore++
+    : false;
+
+  playerScore > computerScore
+    ? console.log("You won the game to 5!!!")
+    : console.log("You lost the game to 5!!!");
 }
