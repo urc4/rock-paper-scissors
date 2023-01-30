@@ -1,18 +1,11 @@
+let keepPlaying = true; //getr rid of global variables
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
   const GAME_OPTIONS = ["rock", "paper", "scissors"];
   return GAME_OPTIONS[Math.floor(Math.random() * 2.999999999999)];
 }
-
-const buttons = document.querySelectorAll("button");
-const interface = document.querySelector(".interface");
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const playerSelection = button.id;
-    const computerSelection = getComputerChoice();
-    interface.textContent = playRound(playerSelection, computerSelection);
-  });
-});
 
 function playRound(playerSelection, computerSelection) {
   const playerWinMessage = `You win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
@@ -31,17 +24,29 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function gameOn() {
-  let playerScore = 0;
-  let computerScore = 0;
+//add class list toglle when someone reaches the desired score to change interface
 
-  interface.textContent.includes("win")
-    ? playerScore++
-    : interface.textContent.includes("lose")
-    ? computerScore++
-    : false;
+const interface = document.querySelector(".interface");
+const scorePlayer = document.createElement("p");
+const scoreComputer = document.createElement("p");
 
-  playerScore > computerScore
-    ? console.log("You won the game to 5!!!")
-    : console.log("You lost the game to 5!!!");
+function calculateScore() {
+  if (interface.textContent.includes("win")) {
+    scorePlayer.textContent = `Playuh score ${++playerScore}`;
+  } else if (interface.textContent.includes("lose")) {
+    scoreComputer.textContent = `CPU score ${++computerScore}`;
+  }
+  interface.appendChild(scorePlayer);
+  interface.appendChild(scoreComputer);
 }
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const playerSelection = button.id;
+    const computerSelection = getComputerChoice();
+    interface.textContent = playRound(playerSelection, computerSelection);
+    calculateScore();
+  });
+});
