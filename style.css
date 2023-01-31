@@ -21,7 +21,14 @@ body{
 }
 a {
     text-decoration: none;
+    /* transition-duration: 0.3s; */
 }
+
+a:hover{
+    color: #e0f048;
+    font-size:2rem;
+}
+
 
 button {
     font-weight: 800;

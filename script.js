@@ -8,18 +8,27 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  const playerWinMessage = `You win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
-  const playerLoseMessage = `You lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
-
+  let playerWinMessage = `You win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+  let playerLoseMessage = `You lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+  let tieMessage = `It's a tie. ${playerSelection.toUpperCase()} doesn't beat ${playerSelection.toUpperCase()}`;
   if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-    return `It's a tie. ${playerSelection.toUpperCase()} doesn't beat ${playerSelection.toUpperCase()}`;
+    tieMessage += "\nSTAY OUT OF MY TERRITORY!";
+    return tieMessage;
   } else if (playerSelection.toLowerCase() === "rock") {
+    playerWinMessage += "\nI AM THE ONE WHO KNOCKS";
+    playerLoseMessage += "\nTREAD LIGHTLY";
     return computerSelection === "scissors"
       ? playerWinMessage
       : playerLoseMessage;
   } else if (playerSelection.toLowerCase() === "scissors") {
+    playerWinMessage += "\nI PREFER TO SEE IT AS THE STUDY OF CHANGE";
+    playerLoseMessage +=
+      "\nI I WILL KILL YOUR WIFE, I WILL KILL YOUR SON, I WILL KILL YOUR INFANT DAUGHTER";
     return computerSelection === "paper" ? playerWinMessage : playerLoseMessage;
   } else {
+    playerWinMessage +=
+      "\nJUST BECAUSE YOU SHOT JESSE JAMES, DON'T MAKE YOU JESSE JAMES";
+    playerLoseMessage += "\nALL I CAN DO IS WAIT...FOR THE CANCER TO COME BACK";
     return computerSelection === "rock" ? playerWinMessage : playerLoseMessage;
   }
 }
