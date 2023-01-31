@@ -49,28 +49,22 @@ function calculateScore() {
   computerDisplay.appendChild(scoreComputer);
 }
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".player-options button");
+const playerImg = document.createElement("img");
+const computerImg = document.createElement("img");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    playerImg.src = "";
+    computerImg.src = "";
     const playerSelection = button.id;
     const computerSelection = getComputerChoice();
     interface.textContent = playRound(playerSelection, computerSelection);
     calculateScore();
-    const playerDisplay = document.querySelector("#player.jock");
-    const computerDisplay = document.querySelector("#computer.jock");
-    const optionImagePlayer = document.createElement("div");
-    const optionImageComputer = document.createElement("div");
-    const playerImg = document.createElement("img");
-    const computerImg = document.createElement("img");
+
     playerImg.src = `./icons/${playerSelection}.png`;
     computerImg.src = `./icons/${computerSelection}.png`;
-    styleFlex = "display:flex;justify-content:center;";
-    optionImagePlayer.append(playerImg);
-    optionImageComputer.append(computerImg);
-    optionImagePlayer.style.cssText = styleFlex;
-    optionImageComputer.style.cssText = styleFlex;
-    playerDisplay.append(optionImagePlayer);
-    computerDisplay.append(optionImageComputer);
+    playerDisplay.append(playerImg);
+    computerDisplay.append(computerImg);
   });
 });
