@@ -61,13 +61,11 @@ function calculateScore() {
 const buttons = document.querySelectorAll(".player-options button");
 const playerImg = document.createElement("img");
 const computerImg = document.createElement("img");
+const playerOptions = document.querySelector(".player-options");
+const restartButton = document.createElement("button");
+const cancelButton = document.createElement("button");
 
 function promptRestart() {
-  const playerOptions = document.querySelector(".player-options");
-  const restartButton = document.createElement("button");
-  const cancelButton = document.createElement("button");
-  restartButton.textContent = "";
-  cancelButton.textContent = "";
   restartButton.textContent = "Restart";
   cancelButton.textContent = "Cancel";
   playerOptions.appendChild(restartButton);
@@ -82,9 +80,10 @@ function promptRestart() {
   });
 }
 
-const playerOptions = document.querySelector(".player-options");
 const message = document.createElement("div");
 function updateScore() {
+  restartButton.remove();
+  cancelButton.remove();
   message.textContent = "";
   if (playerScore === 5 || computerScore === 5) {
     keepPlaying = false;
