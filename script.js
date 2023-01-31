@@ -1,4 +1,4 @@
-let keepPlaying = true; //getr rid of global variables
+let keepPlaying = true; //get rid off global variables
 let playerScore = 0;
 let computerScore = 0;
 
@@ -62,18 +62,56 @@ const buttons = document.querySelectorAll(".player-options button");
 const playerImg = document.createElement("img");
 const computerImg = document.createElement("img");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    playerImg.src = "";
-    computerImg.src = "";
-    const playerSelection = button.id;
-    const computerSelection = getComputerChoice();
-    interface.textContent = playRound(playerSelection, computerSelection);
-    calculateScore();
-
-    playerImg.src = `./icons/${playerSelection}.png`;
-    computerImg.src = `./icons/${computerSelection}.png`;
-    playerDisplay.append(playerImg);
-    computerDisplay.append(computerImg);
+function promptRestart() {
+  const playerOptions = document.querySelector(".player-options");
+  const restartButton = document.createElement("button");
+  const cancelButton = document.createElement("button");
+  restartButton.textContent = "Restart";
+  cancelButton.textContent = "Cancel";
+  playerOptions.appendChild(restartButton);
+  playerOptions.appendChild(cancelButton);
+  restartButton.addEventListener("click", () => {
+    keepPlaying = true;
   });
-});
+  cancelButton.addEventListener("click", () => {
+    keepPlaying = false;
+  });
+}
+
+const playerOptions = document.querySelector(".player-options");
+const message = document.createElement("div");
+function updateScore() {
+  message.textContent = "";
+  if (playerScore === 5 || computerScore === 5) {
+    keepPlaying = false;
+    const winMessage = "SAY MY NAME";
+    const loseMessage = "A CRIPPLED LITTLE RATA";
+
+    message.textContent =
+      playerScore > computerScore ? winMessage : loseMessage;
+    playerOptions.appendChild(message);
+    promptRestart();
+  }
+}
+
+function gameOn() {
+  if (!keepPlaying) return;
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      playerImg.src = "";
+      computerImg.src = "";
+      const playerSelection = button.id;
+      const computerSelection = getComputerChoice();
+      interface.textContent = playRound(playerSelection, computerSelection);
+      calculateScore();
+
+      playerImg.src = `./icons/${playerSelection}.png`;
+      computerImg.src = `./icons/${computerSelection}.png`;
+      playerDisplay.append(playerImg);
+      computerDisplay.append(computerImg);
+      updateScore();
+    });
+  });
+}
+
+gameOn();
