@@ -66,15 +66,19 @@ function promptRestart() {
   const playerOptions = document.querySelector(".player-options");
   const restartButton = document.createElement("button");
   const cancelButton = document.createElement("button");
+  restartButton.textContent = "";
+  cancelButton.textContent = "";
   restartButton.textContent = "Restart";
   cancelButton.textContent = "Cancel";
   playerOptions.appendChild(restartButton);
   playerOptions.appendChild(cancelButton);
   restartButton.addEventListener("click", () => {
-    keepPlaying = true;
+    playerScore = 0;
+    computerScore = 0;
+    return true;
   });
   cancelButton.addEventListener("click", () => {
-    keepPlaying = false;
+    return false;
   });
 }
 
@@ -90,14 +94,19 @@ function updateScore() {
     message.textContent =
       playerScore > computerScore ? winMessage : loseMessage;
     playerOptions.appendChild(message);
-    promptRestart();
+    return promptRestart();
   }
+  return true;
 }
 
 function gameOn() {
-  if (!keepPlaying) return;
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      keepPlaying = updateScore();
+      if (!keepPlaying) {
+        event.preventDefault();
+        return false;
+      }
       playerImg.src = "";
       computerImg.src = "";
       const playerSelection = button.id;
@@ -109,7 +118,6 @@ function gameOn() {
       computerImg.src = `./icons/${computerSelection}.png`;
       playerDisplay.append(playerImg);
       computerDisplay.append(computerImg);
-      updateScore();
     });
   });
 }
